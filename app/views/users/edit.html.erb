@@ -1,0 +1,14 @@
+<% provide(:title, t("user.edit.title")) %>
+<% provide(:button_text, t("user.edit.save")) %>
+<div id="page-content">      
+  <ul class="breadcrumb breadcrumb-top">
+    <li>Tables</li>
+    <li><a href="">Datatables</a></li>
+  </ul>
+  <div class="block full">
+    <div class="block-title">
+        <h1><%= t"user.edit.title" %></h1>
+    </div>
+      <%= render "form", url: {url: user_path} %>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<tr>
+  <td class="text-center"><%=user.id%></td>
+  <td class="text-center"><%= image_tag user.avatar if user.avatar? %></td>
+  <td><%= link_to user.name, user %></td>
+  <td><%= user.email%></td>
+  <td class="text-center">
+    <div class="btn-group">
+      <div class="col-md-6">
+        <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_user_path(user.id), class: "btn btn-xs btn-default" %>
+      </div>
+      <% if current_user.admin? && !current_user?(user) %>
+      <div class="col-md-6">
+        <%= link_to user, method: :delete, data: {confirm: t("user.user.confirm")}, class: "btn btn-xs btn-danger" do %><i class="fa fa-times"></i> <% end %>
+      </div>
+      <% else %>
+      <div class="col-md-6">
+        &nbsp;  &nbsp;  &nbsp;  &nbsp;
+      </div>
+      <% end %>
+    </div>
+  </td>
+</tr>
+

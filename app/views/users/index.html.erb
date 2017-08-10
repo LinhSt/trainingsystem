@@ -1,0 +1,29 @@
+<% provide(:title, t("user.index.title")) %>
+<div id="page-content">
+	<ul class="breadcrumb breadcrumb-top">
+	  <li>User</li>
+	  <li><a href=""><%= t"user.index.title" %></a></li>
+	</ul>
+	<div class="block full">
+	  <div class="block-title">
+	      <h1><%= t"user.index.title" %>
+	      |  <%= link_to "Create users", signup_path, class: "" %></h1>
+	  </div>
+	  <div class="table-responsive">
+	      <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+	          <thead>
+	              <tr>
+	                  <th class="text-center">ID</th>
+	                  <th class="text-center"><i class="gi gi-user"></i></th>
+	                  <th>Name</th>
+	                  <th>Email</th>
+	                  <th class="text-center">Actions</th>
+	              </tr>
+	          </thead>
+	          <tbody>
+							<%= render @users %>
+						</tbody>
+          </table>
+      </div>
+  </div>
+</div>
