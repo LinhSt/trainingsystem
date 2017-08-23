@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :load_user, only: %I[show destroy edit update]
   before_action :logged_in_user, only: %I[index edit update destroy new]
   before_action :correct_user, only: %I[edit update]
-  before_action :admin_user, only: %I[destroy index]
+  before_action :admin_user, only: :destroy
 
   def index
     @users = User.all
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     return if @user.activated?
     flash[:danger] = t "controller.user.error_activate"
-    redirect_to root_path
+    redirect_to users_url
   end
 
   def new
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   def update # patch
     if @user.update_attributes user_params
-      flash.now[:success] = t"controller.user.updated"
+      flash[:success] = t "controller.user.updated"
       redirect_to @user
     else
       render :edit
@@ -57,6 +57,6 @@ class UsersController < ApplicationController
     @user = User.find_by id: params[:id]
     return if @user
     flash[:danger] = t "controller.user.error_id"
-    redirect_to root_path
+    redirect_to users_url
   end
 end

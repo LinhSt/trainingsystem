@@ -2,13 +2,12 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    # instance variable to use  in test by assign
     @user = User.find_by email: params[:session][:email].downcase
     if @user && @user.authenticate(params[:session][:password]) # of h_s_p
       activate_or_not @user
     else
       flash.now[:danger] = t "controller.session.error"
-      render :new
+      redirect_to root_url
     end
   end
 

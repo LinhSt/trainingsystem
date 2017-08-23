@@ -1,14 +1,17 @@
 <% provide(:title, t("password_reset.edit.title")) %>
-<div id="login-background">
-    <%= image_tag "placeholders/headers/login_header.jpg" %>
+  <%= render "static_pages/logo" %>
+<div class="col-md-4">
+  <h1 id = "login-title" >Training System</h1>
+  <p style="font-size:30px">Website management trainee of Human resource training department.</p>
 </div>
+  <%= render "static_pages/indexx" %>
 <div id="login-container" class="animation-fadeIn">
     <!-- Login Title -->
     <div class="login-title text-center">
         <h1><i class="gi gi-flash"></i> <strong>Training system</strong><br><small>Please <strong>Resets Password</strong></small></h1>
     </div>
     <div class="block push-bit">
-          <%= form_for(:session, url: login_path, html: { class: "form-horizontal form-bordered form-control-borderless" }) do |f| %>
+          <%= form_for(@user, url: password_reset_path , html: { class: "form-horizontal form-bordered form-control-borderless" }) do |f| %>
             <%= render "shared/error_messages", object: @user %>
             <%= hidden_field_tag :email, @user.email  %>
             <div class="form-group">

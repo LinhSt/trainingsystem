@@ -17,6 +17,7 @@ gem "sqlite3"
 gem "puma", "~> 3.7"
 gem "carrierwave",             "1.1.0"
 gem "mini_magick",             "4.7.0"
+gem "ckeditor"
 gem "fog",                     "1.40.0"
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 5.0"

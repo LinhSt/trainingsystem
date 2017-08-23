@@ -9,6 +9,7 @@ class User < ApplicationRecord
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
+
   def self.digest string
     cost =
       if ActiveModel::SecurePassword.min_cost
@@ -27,6 +28,7 @@ class User < ApplicationRecord
     self.remember_token = User.new_token
     update_attributes remember_digest: User.digest(remember_token)
   end
+
   def authenticated? attribute, token
     digest = send "#{attribute}_digest"
     return false unless digest
@@ -55,7 +57,7 @@ class User < ApplicationRecord
   def create_reset_digest
     self.reset_token = User.new_token
     update_attributes(reset_digest: User.digest(reset_token),
-      reset_sent_at: Time.zone.now)
+      reset_send_at: Time.zone.now)
   end
 
   def send_password_reset_email
@@ -64,19 +66,19 @@ class User < ApplicationRecord
 
   # Returns true if a password reset has expired.
   def password_reset_expired?
-    reset_sent_at < 2.hours.ago
+    reset_send_at < 2.hours.ago
   end
 
-  validate  :picture_size
+  validate :picture_size
 
   private
 
   def picture_size
-    if avatar.size > 5.megabytes
-      errors.add(:avatar, "should be less than 5MB")
-    end
+    return if avatar.size < 5.megabytes
+    errors.add(:avatar, "should be less than 5MB")
   end
   # Converts email to all lower-case - standard for email in DB
+
   def downcase_email
     email.downcase!
   end

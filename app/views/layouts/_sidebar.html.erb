@@ -1,19 +1,24 @@
 <div id="sidebar">
   <div class="sidebar-scroll">
     <div class="sidebar-content">
-        <%= link_to raw('<i class="hi hi-home"></i> Home'), root_path, class: "sidebar-brand" %>
+      <%= link_to raw('<i class="hi hi-home"></i> Home'), current_user, class: "sidebar-brand" %>
       <div class="sidebar-section sidebar-user clearfix">
-          <div class="sidebar-user-avatar">
-            <a href="page_ready_user_profile.html">
-              <%= image_tag @current_user.avatar %>
-            </a>
-          </div>
-          <div class="sidebar-user-name"><%= @current_user.name %></div>
-          <div class="sidebar-user-links">
-            <%= link_to raw('<i class="gi gi-user"></i>'), current_user %>
-            <a href="#modal-user-settings" data-toggle="modal" class="enable-tooltip" data-placement="bottom" title="Settings"><i class="gi gi-cogwheel"></i></a>
-            <%= link_to raw('<i class="gi gi-exit"></i>'), logout_path, method: :delete %>
-          </div>
+        <div class="sidebar-user-avatar">
+          <% if current_user.avatar? %>
+            <%= image_tag current_user.avatar %>
+          <% else %>
+            <%= image_tag "placeholders/avatars/profile.png" %>
+          <% end %>
+        </div>
+        <div class="sidebar-user-name"><%= current_user.name %></div>
+        <div class="sidebar-user-links">
+          <%= link_to current_user do %>
+            <i class="gi gi-user"></i>
+          <% end %>
+          <%= link_to logout_path, method: :delete do %>
+            <i class="gi gi-exit"></i>
+          <% end %>
+        </div>
       </div>
       <!-- END User Info -->
       <!-- Sidebar Navigation -->
@@ -22,7 +27,7 @@
           <span class="sidebar-header-title" style="font-size: 25px">Workspace</span>
         </li>
         <% if current_user.admin? %>
-        <li><%= link_to raw('<i class="fa fa-users fa-fw"></i> Users'), users_path %></li>
+        <li><%= link_to raw('<i class="fa fa-users fa-fw"></i> Users'), users_path%></li>
         <% end %>
         <li><%= link_to raw('<i class="hi hi-book"></i> Subject'), subjects_path %></li>
       </ul>

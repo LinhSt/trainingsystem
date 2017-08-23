@@ -1,9 +1,6 @@
 # StaticPagesController class
 class StaticPagesController < ApplicationController
-  def home
-    return unless logged_in?
-    @user = current_user
-  end
+  def home; end
 
   def help; end
 

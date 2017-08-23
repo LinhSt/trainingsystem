@@ -2079,7 +2079,6 @@ textarea.form-control {
 .form-control-borderless .input-group-addon,
 .form-control-borderless,
 .form-control-borderless:focus {
-    border: transparent !important;
 }
 
 .input-group {

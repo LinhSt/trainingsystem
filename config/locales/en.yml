@@ -31,13 +31,7 @@
 
 en:
   footer:
-    rails_tut: "The Ruby on Rails Tutorial"
-    by: "by "
-    about: " About"
-    contact: "Contact"
-    news: "News"
   header:
-    sample_app: "sample app"
     home: "Home"
     help: "Help"
     login: "Log in"
@@ -47,27 +41,6 @@ en:
     logout: "Log out"
     users: "Users"
   static_pages:
-    about:
-      title: "About"
-      rails_tut: "The Ruby on Rails Tutorial"
-      is_a: "is a"
-      book: "book"
-      and: "and"
-      screen: "screencast serie"
-      teach: "to teach web development with"
-      rails: "Ruby on Rails"
-      sample: This is the sample application for the tutorial.
-    contact:
-      title: "Contact"
-      tutorial: "Contact the Ruby on Rails Tutorial about the sample app at the"
-      page: "contact page"
-    help:
-      title: "Help"
-      tutorial: "Get help on the Ruby on Rails Tutorial at the"
-      section: "Rails Tutorial help section"
-      get: "To get help on this sample app, see the"
-      rails: "Ruby on Rails Tutorial"
-      book: "book"
     home:
       welcome: "Welcome to the Sample App"
       page: "This is the home page for the"
@@ -85,7 +58,7 @@ en:
       schools: "Schools"
       avatar: "Avatar"
     new:
-      title: "Sign up"
+      title: "Create user"
       page: "This will be a signup page for new users."
       create: "Create my account"
     edit:
@@ -94,6 +67,25 @@ en:
       change: "change"
     index:
       title: "All users"
+      name: "Name"
+      email: "Email"
+      actions: "Actions"
+      create: "Create users"
+      user: "User"
+      id: "ID"
+      edit: "Edit user"
+      new: "New"
+    show:
+      profile: "Profile"
+      infomation: "Infomation"
+      email: "Email"
+      name: "Name"
+      university: "University"
+      graduation: "Graduation"
+      note: "Note"
+      about: "About"
+      timeline: "Timeline"
+      start: "Start Training Date"
     user:
       confirm: "You sure?"
       delete: "delete"
@@ -105,13 +97,23 @@ en:
     new:
       title: "Create subject"
       page: "This will be a signup page for new users."
-      create: "Create my account"
+      create: "Create subject"
     edit:
       title: "Edit subject"
       save: "Save changes"
       change: "change"
+    show:
+      title: "Show"
+      content: "Content:"
+      description: "Description:"
     index:
       title: "All subject"
+      subject: "Subject"
+      create: "Create subject"
+      description: "Description"
+      name: "Name"
+      action: "Actions"
+      id: "ID"
     subject:
       confirm: "You sure?"
       delete: "delete"
@@ -195,3 +197,10 @@ en:
         greeting: "Hi"
       password_reset:
         sub: "Password reset"
+  resets_password:
+    edit:
+        training: "Training system"
+        please: "Please"
+        resets: " Resets Password"
+        enter: " Enter email"
+        framgia: "Framgia"
