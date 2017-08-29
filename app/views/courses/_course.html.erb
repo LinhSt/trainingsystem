@@ -1,0 +1,13 @@
+<tr>
+  <td class="text-center"><%= course.id %></td>
+  <td><%= link_to course.name, course %></td>
+  <td><%= course.description %></td>
+  <td><%= course.start_time %></td>
+  <td><%= course.end_time %></td>
+  <td class="text-center">
+      <div class="btn-group">
+          <%= link_to edit_course_path(course), class: "btn btn-xs btn-default" do %><i class="fa fa-pencil"></i><% end %>
+            <%= link_to course, method: :delete, data: {confirm: t("user.user.confirm")}, class: "btn btn-xs btn-danger" do %><i class="fa fa-times"></i> <% end %>
+      </div>
+  </td>
+</tr>

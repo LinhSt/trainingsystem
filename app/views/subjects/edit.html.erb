@@ -1,0 +1,14 @@
+<% provide(:title, t("subject.edit.title")) %>
+<% provide(:button_text, t("subject.edit.save")) %>
+<div id="page-content">      
+  <ul class="breadcrumb breadcrumb-top">
+    <li><%= t "subject.index.subject" %></li>
+    <li><a href=""><%= t"subject.edit.title" %></a></li>
+  </ul>
+  <div class="block full">
+    <div class="block-title text-center">
+        <h1><%= t"subject.edit.title" %></h1>
+    </div>
+      <%= render "form", subject: @subject %>
+  </div>
+</div>

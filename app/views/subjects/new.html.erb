@@ -1,0 +1,14 @@
+<% provide(:title, t("subject.new.title")) %>
+<% provide(:button_text, t("subject.new.create")) %>
+<div id="page-content">      
+	<ul class="breadcrumb breadcrumb-top">
+	  <li>Subject</li>
+	  <li><a href="">New</a></li>
+	</ul>
+	<div class="block full">
+	  <div class="block-title text-center">
+        <h1><%= t"subject.new.title" %></h1>
+    </div>
+    	<%= render "form", subject: @subject %>
+	</div>
+</div>

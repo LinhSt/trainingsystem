@@ -1,0 +1,29 @@
+<% provide(:title, t("subject.index.title")) %>
+<div id="page-content">
+  <ul class="breadcrumb breadcrumb-top">
+    <li><%= t "subject.index.subject" %></li>
+    <li><a href=""><%= t "subject.index.title" %></a></li>
+  </ul>
+  <div class="block full">
+    <div class="block-title">
+      <h1><%= t "subject.index.title" %>
+        |  <%= link_to t("subject.index.create"), new_subject_path, class: "" %>
+      </h1>
+    </div>
+    <div class="table-responsive">
+      <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center"><%= t "subject.index.id" %></th>
+            <th><%= t "subject.index.name" %></th>
+            <th><%= t "subject.index.description" %></th>
+            <th class="text-center"><%= t "subject.index.actions" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @subjects %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

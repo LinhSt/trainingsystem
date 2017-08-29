@@ -6,6 +6,7 @@
   <%= render "layouts/shim" %>
 </head>
 <body>
+  <% if logged_in? %>
   <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
     <%= render "layouts/sidebaralt" %>
     <%= render "layouts/sidebar" %>
@@ -19,8 +20,10 @@
     </div>
   </div>
   <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
+  <% else %>
   <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
   <%= yield %>
   <% end %>
 </body>

@@ -1,0 +1,31 @@
+<% provide(:title, t("courses.new.title")) %>
+<div id="page-content">
+  <ul class="breadcrumb breadcrumb-top">
+    <li><%= t "courses.new.title" %></li>
+    <li><a href=""><%= t "courses.index.index" %></a></li>
+  </ul>
+  <div class="block full">
+    <div class="block-title">
+      <h1><%= t "courses.index.title" %>
+        |  <%= link_to t("courses.index.create"), new_course_path, class: "" %>
+      </h1>
+    </div>
+    <div class="table-responsive">
+      <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center"><%= t "subject.index.id" %></th>
+            <th><%= t "courses.name" %></th>
+            <th><%= t "courses.description" %></th>
+            <th><%= t "courses.new.date_start" %></th>
+            <th><%= t "courses.new.date_end" %></th>
+            <th class="text-center"><%= t "subject.index.actions" %></th>
+          </tr>
+        </thead>
+        <tbody>
+           <%= render @courses %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

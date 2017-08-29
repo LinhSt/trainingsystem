@@ -1,0 +1,23 @@
+<% provide(:title, t("subject.new.title")) %>
+<% provide(:button_text, t("subject.new.create")) %>
+<div id="page-content" style="min-height: 1310px;">
+  <ul class="breadcrumb breadcrumb-top">
+    <li><%= t "subject.index.subject" %></li>
+    <li><a href=""><%= t "subject.show.show" %></a></li>
+  </ul>
+  <div class="block full block-alt-noborder">
+    <h3 class="sub-header text-center">
+      <strong><%= @subject.name %></strong>
+      <%= link_to edit_subject_path(@subject), class: "pull-right" do %><i class="fa fa-pencil"></i><% end %>
+    </h3>
+    <div class="sub-header"><strong><%= t "subject.index.description" %> </strong><%= @subject.description %></div>
+    <p><strong><%= t "subject.index.content" %> </strong></p>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+        <article>
+          <%= @subject.content %>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

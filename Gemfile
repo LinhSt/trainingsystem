@@ -5,20 +5,27 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "rails", "~> 5.1.3"
+gem "rails", "~> 5.1.2"
+gem "bootstrap", "~> 4.0.0.beta"
+gem "bcrypt",         "3.1.11"
+gem "jquery-rails"
+gem "faker", "1.7.3"
 gem "sqlite3"
 gem "puma", "~> 3.7"
+gem "carrierwave",             "1.1.0"
+gem "mini_magick",             "4.7.0"
+gem "ckeditor"
+gem "fog",                     "1.40.0"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.2"
-gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
   gem "capybara", "~> 2.13"
   gem "selenium-webdriver"
+  gem "pry-rails"
 end
 
 group :development do
@@ -27,4 +34,5 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
 end
+
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

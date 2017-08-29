@@ -1,0 +1,30 @@
+<% provide(:title, t("courses.new.title")) %>
+<% provide(:button_text, t("courses.new.create")) %>
+<div id="page-content" style="min-height: 1310px;">
+  <ul class="breadcrumb breadcrumb-top">
+    <li><%= t "courses.courses" %></li>
+    <li><a href=""><%= t "courses.show.show" %></a></li>
+  </ul>
+  <div class="block full block-alt-noborder">
+    <h3 class="sub-header text-center">
+      <strong><%= @course.name %></strong>
+      <%= link_to edit_course_path(@course), class: "pull-right" do %><i class="fa fa-pencil"></i><% end %>
+    </h3>
+    <div class="sub-header">
+      <strong><%= t "courses.id" %> :</strong>
+      <%= @course.id %>
+    </div>
+    <div class="sub-header">
+      <strong><%= t "courses.description" %> :</strong>
+      <%= @course.description %>
+    </div>
+    <div class="sub-header">
+      <strong><%= t "courses.new.start_time" %> :</strong>
+      <%= @course.start_time %>
+    </div>
+    <div class="sub-header">
+      <strong><%= t "courses.new.end_time" %> :</strong>
+      <%= @course.end_time %>
+    </div>
+  </div>
+</div>

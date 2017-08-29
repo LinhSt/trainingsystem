@@ -1,0 +1,43 @@
+<% provide(:title, t("password_reset.edit.title")) %>
+  <%= render "static_pages/logo" %>
+<div class="col-md-4">
+  <h1 id = "login-title" >Training System</h1>
+  <p style="font-size:30px">Website management trainee of Human resource training department.</p>
+</div>
+  <%= render "static_pages/indexx" %>
+<div id="login-container" class="animation-fadeIn">
+    <!-- Login Title -->
+    <div class="login-title text-center">
+        <h1><i class="gi gi-flash"></i> <strong>Training system</strong><br><small>Please <strong>Resets Password</strong></small></h1>
+    </div>
+    <div class="block push-bit">
+          <%= form_for(@user, url: password_reset_path , html: { class: "form-horizontal form-bordered form-control-borderless" }) do |f| %>
+            <%= render "shared/error_messages", object: @user %>
+            <%= hidden_field_tag :email, @user.email  %>
+            <div class="form-group">
+              <div class="col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                  <%= f.password_field :password, class: "form-control input-lg", placeholder: "password" %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                  <%= f.password_field :password_confirmation, class: "form-control input-lg", placeholder: "password_confirmation" %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 text-center">
+                    <%= f.submit t("password_reset.edit.submit"), class: "btn btn-primary" %>
+                </div>
+            </div>
+          <% end %>
+      </div>
+    <footer class="text-muted text-center">
+        <small><span id="year-copy"></span> &copy; <a href="http://goo.gl/TDOSuC" target="_blank">ProUI 2.1</a></small>
+    </footer>
+</div>

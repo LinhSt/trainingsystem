@@ -1,0 +1,25 @@
+<%= form_for(@subject, html: { class: "form-horizontal form-bordered form-control-borderless" }) do |f| %>
+<div class="form-group">
+  <%= f.label :name, t("subject.form.name"), class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :description, t("subject.form.description"), class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_area :description, class: "form-control", rows: "9", placeholder: "Description.." %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :content, t("subject.form.content"), class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_area :content, class: "form-control", rows: "9", placeholder: "Content.." %>
+  </div>
+</div>
+<div class="form-group form-actions">
+  <div class="col-md-9 col-md-offset-3">
+    <%= f.submit yield(:button_text), class: "btn btn-sm btn-primary" %>
+  </div>
+</div>
+<% end %>

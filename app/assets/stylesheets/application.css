@@ -16,5 +16,6 @@
  *= require plugins.css
  *= require themes.css
  *= require login_modal.css
+ *= require multi-select.css
  */
 @import "bootstrap";
