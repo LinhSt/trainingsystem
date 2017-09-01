@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   def create # post
     @user = User.new user_params
+    @user.avatar ||= "logo.png"
     @user.save
     if @user.save
       @user.send_activation_email

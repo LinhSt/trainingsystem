@@ -1,141 +1,187 @@
 <% provide(:title, t("courses.new.title")) %>
 <% provide(:button_text, t("courses.new.create")) %>
+<style type="text/css" media="screen">
+   img {
+   height: 45px;
+   width: 50px;
+   }
+</style>
 <div id="page-content" style="min-height: 1310px;">
-  <ul class="breadcrumb breadcrumb-top">
-    <li><%= t "courses.courses" %></li>
-    <li><a href=""><%= t "courses.show.show" %></a></li>
-  </ul>
-  <div class="block full block-alt-noborder">
-    <h3 class="sub-header text-center">
-      <strong><%= @course.name %></strong>
-      <%= link_to edit_course_path(@course), class: "pull-right" do %><i class="fa fa-pencil"></i><% end %>
-    </h3>
-    <div class="sub-header">
-      <strong><%= t "courses.id" %> :</strong>
-      <%= @course.id %>
-    </div>
-    <div class="sub-header">
-      <strong><%= t "courses.description" %> :</strong>
-      <%= @course.description %>
-    </div>
-    <div class="sub-header">
-      <strong><%= t "courses.new.start_time" %> :</strong>
-      <%= @course.start_time %>
-    </div>
-    <div class="sub-header">
-      <strong><%= t "courses.new.end_time" %> :</strong>
-      <%= @course.end_time %>
-    </div>
-    <div class="sub-header">
-      <strong>Trainee :</strong>
-      <%= @trainee %>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add new Trainer</button>
-    </div>
-    <div class="sub-header">
-      <strong>Trainer :</strong>
-      <%= @trainer %>
-    </div>
-    <div class="sub-header">
-      <%= link_to "add user" ,edit_course_path(@course)%>
-    </div>
-  </div>
-  <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Adding Trainee to <%= @course.name %></h4>
-        </div>
-        <div class="modal-body">
-          <%= form_for(UserCourse.new, method: :post, html: { class: "form-horizontal form-bordered form-control-borderless" }) do |f| %>
-          <div class="form-group">
-            <h1> Select trainer</h1>
-            <%= f.select(:user_id, User.trainee.collect { |u| [u.name,u.id]}, {}, class: "form-control",id: "trainee-select") %>
-          </div>
-          <div class="modal-footer">
-            <%= f.submit "Add" , class: "btn btn-primary" %>
-          </div>
-          <%end%>
-        </div>
+   <ul class="breadcrumb breadcrumb-top">
+      <li><%= t "courses.courses" %></li>
+      <li><a href=""><%= t "courses.show.show" %></a></li>
+   </ul>
+   <div class="row">
+      <div class="col-md-7">
+         <div class="block full block-alt-noborder">
+            <h3 class="sub-header text-center">
+               <strong><%= @course.name %></strong>
+               <%= link_to edit_course_path(@course), class: "pull-right" do %><i class="fa fa-pencil"></i><% end %>
+            </h3>
+            <div class="sub-header">
+               <strong><%= t "courses.id" %> :</strong>
+               <%= @course.id %>
+            </div>
+            <div class="sub-header">
+               <strong><%= t "courses.description" %> :</strong>
+               <%= @course.description %>
+            </div>
+            <div class="sub-header">
+               <strong><%= t "courses.new.start_time" %> :</strong>
+               <%= @course.start_time %>
+            </div>
+            <div class="sub-header">
+               <strong><%= t "courses.new.end_time" %> :</strong>
+               <%= @course.end_time %>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
+      <div class="col-md-5">
+         <div class="block">
+            <div class="block-title">
+               <div class="block-options pull-right">
+                  <a class="btn btn-alt btn-sm btn-default" data-toggle="modal"
+                  data-target="#addTrainer" title="" data-original-title="Settings">
+                  <i class="fa fa-plus" aria-hidden="true" ></i>
+                  </a>
+               </div>
+               <h2><strong>Trainer</strong><small><%= @show_trainers.size %></small></h2>
+            </div>
+            <div class="row text-center">
+               <%@show_trainers.each do |trainer|%>
+               <div class="col-xs-4 col-sm-3 col-lg-2 block-section">
+                  <a href="javascript:void(0)">
+                  <%= image_tag "logo.png", class: "img-circle" %>
+                  </a>
+               </div>
+               <% end %>
+            </div>
+         </div>
+         <div id="addTrainer" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header text-center">
+                     <h2 class="modal-title"><i class="fa fa-pencil"></i>Edit Trainer</h2>
+                  </div>
+                  <!-- END Modal Header -->
+                  <!-- Modal Body -->
+                  <div class="modal-body">
+                     <%= form_for(@course, html: {class: "form-horizontal form-bordered"}) do |f| %>
+                     <fieldset>
+                        <div class="col-md-12">
+                           <!-- Widget -->
+                           <div class="widget">
+                              <div class="widget-simple" style="max-height: 400px; overflow-y: scroll;">
+                                 <div class="table-responsive">
+                                    <table class="table table-borderless table-pricing">
+                                       <tbody>
+                                          <%= f.fields_for :users_courses do |p| %>
+                                          <% if p.object.user.trainer?%>
+                                          <tr>
+                                             <td>
+                                                <%= p.check_box :_destroy, {:checked => p.object.persisted?}, '0', '1' %>
+                                             </td>
+                                             <td>
+                                                <%= p.hidden_field :user_id %>
+                                                <%= p.object.user.name %>
+                                             </td>
+                                          </tr>
+                                          <% end %>
+                                          <% end %>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- END Widget -->
+                        </div>
+                     </fieldset>
+                     <div class="form-group form-actions">
+                        <div class="col-xs-12 text-right">
+                           <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                           <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <% end %>
+            </div>
+         </div>
+
+         <div class="block">
+            <div class="block-title">
+               <div class="block-options pull-right">
+                  <a class="btn btn-alt btn-sm btn-default" data-toggle="modal"
+                     data-target="#addTrainee" title="" data-original-title="Settings">
+                  <i class="fa fa-plus" aria-hidden="true" ></i>
+                  </a>
+                  </a>
+               </div>
+               <h2><strong>Trainee</strong> <small><%= @show_trainees.size %></small></h2>
+            </div>
+            <div class="row text-center">
+               <%@show_trainees.each do |trainee| %>
+               <div class="col-xs-4 col-sm-3 col-lg-2 block-section">
+                  <a href="javascript:void(0)">
+                  <%= image_tag "placeholders/avatars/profile.png", class: "img-circle" %>
+                  </a>
+               </div>
+               <% end %>
+            </div>
+         </div>
+         <div id="addTrainee" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header text-center">
+                     <h2 class="modal-title"><i class="fa fa-pencil"></i>Edit Trainee</h2>
+                  </div>
+                  <!-- END Modal Header -->
+                  <!-- Modal Body -->
+                  <div class="modal-body">
+                     <%= form_for(@course, html: {class: "form-horizontal form-bordered"}) do |f| %>
+                     <fieldset>
+                        <div class="col-md-12">
+                           <!-- Widget -->
+                           <div class="widget">
+                              <div class="widget-simple" style="max-height: 400px; overflow-y: scroll;">
+                                 <div class="table-responsive">
+                                    <table class="table table-borderless table-pricing">
+                                       <tbody>
+                                          <%= f.fields_for :users_courses do |p| %>
+                                          <%if p.object.user.trainee?%>
+                                          <tr>
+                                             <td>
+                                                <%= p.check_box :_destroy, {:checked => p.object.persisted?}, '0', '1' %>
+                                             </td>
+                                             <td>
+                                                <%= p.hidden_field :user_id %>
+                                                <%= p.object.user.name %>
+                                             </td>
+                                          </tr>
+                                          <%end%>
+                                          <% end %>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- END Widget -->
+                        </div>
+                     </fieldset>
+                     <div class="form-group form-actions">
+                        <div class="col-xs-12 text-right">
+                           <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                           <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <% end %>
+            </div>
+         </div>
+         <!-- END Most Viewed Courses Block -->
+      </div>
+   </div>
 </div>
-<script type="text/javascript">
-  var userid = new Array;
-  $('#trainee-select').multiSelect({
-      selectableHeader: "<input type='text' class='search-input form-control' autocomplete='off' placeholder='try \"12\"'>",
-      selectionHeader: "<input type='text' class='search-input form-control' autocomplete='off' placeholder='try \"4\"'>",
-      afterInit: function(ms){
-        var that = this,
-            $selectableSearch = that.$selectableUl.prev(),
-            $selectionSearch = that.$selectionUl.prev(),
-            selectableSearchString = '#'+that.$container.attr('id')+' .ms-elem-selectable:not(.ms-selected)',
-            selectionSearchString = '#'+that.$container.attr('id')+' .ms-elem-selection.ms-selected';
-
-        that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
-        .on('keydown', function(e){
-          if (e.which === 40){
-            that.$selectableUl.focus();
-            return false;
-          }
-        });
-
-        that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
-        .on('keydown', function(e){
-          if (e.which == 40){
-            that.$selectionUl.focus();
-            return false;
-          }
-        });
-      },
-      afterSelect: function(values){
-        this.qs1.cache();
-        this.qs2.cache();
-        userid.push(values[0]);
-      },
-      afterDeselect: function(values){
-        this.qs1.cache();
-        this.qs2.cache();
-        console.log(values);
-        var index = userid.indexOf(values[0]);
-        userid.splice(index,1);
-      }
-    });
-  $('#trainer-select').multiSelect({
-      selectableHeader: "<input type='text' class='search-input form-control' autocomplete='off' placeholder='try \"12\"'>",
-      selectionHeader: "<input type='text' class='search-input form-control' autocomplete='off' placeholder='try \"4\"'>",
-      afterInit: function(ms){
-        var that = this,
-            $selectableSearch = that.$selectableUl.prev(),
-            $selectionSearch = that.$selectionUl.prev(),
-            selectableSearchString = '#'+that.$container.attr('id')+' .ms-elem-selectable:not(.ms-selected)',
-            selectionSearchString = '#'+that.$container.attr('id')+' .ms-elem-selection.ms-selected';
-
-        that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
-        .on('keydown', function(e){
-          if (e.which === 40){
-            that.$selectableUl.focus();
-            return false;
-          }
-        });
-
-        that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
-        .on('keydown', function(e){
-          if (e.which == 40){
-            that.$selectionUl.focus();
-            return false;
-          }
-        });
-      },
-      afterSelect: function(){
-        this.qs1.cache();
-        this.qs2.cache();
-      },
-      afterDeselect: function(){
-        this.qs1.cache();
-        this.qs2.cache();
-      }
-  });
-</script>

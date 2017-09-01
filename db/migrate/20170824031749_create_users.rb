@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :email
       t.string :password_digest
       t.string :remember_digest
-      t.integer :role
+      t.boolean :admin
       t.string :activation_digest
       t.boolean :activated
       t.datetime :activated_at
@@ -13,6 +13,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.datetime :reset_send_at
       t.string :schools
       t.date :graduation
+      t.integer :role
       t.string :avatar
 
       t.timestamps

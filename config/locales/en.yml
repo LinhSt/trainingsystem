@@ -241,4 +241,6 @@ en:
     login: "Login"
     framgia: "Framgia Training System"
     index: 
+    home:
+      email: "Email"
       

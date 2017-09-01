@@ -5,7 +5,7 @@
       <!-- Widget Header -->
       <div class="widget-header text-center themed-background-dark-default">
         <h3 class="widget-content-light">
-          <a href="page_ready_elearning_course_lessons.html" class="themed-color-default"><%= course.name %></a><br>
+          <%= link_to course.name , courses_subject_path(course.id) %></a><br>
           <small><%= course.description %></small>
         </h3>
       </div>
@@ -17,7 +17,7 @@
         </a>
         <div class="row">
           <div class="col-md-7">
-          15 trainee, 8 trainer
+          <%=course.users.trainer.size %> trainer, <%=course.users.trainee.size %> trainee
           </div>
           <div class="col-md-5">
             <i class="fa fa-calendar-o fa-2" aria-hidden="true"></i>

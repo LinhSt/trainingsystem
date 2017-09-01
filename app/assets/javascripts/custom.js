@@ -1,1 +1,0 @@
- $('#pre-selected-options').multiSelect();

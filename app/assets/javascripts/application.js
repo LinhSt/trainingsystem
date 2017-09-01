@@ -11,14 +11,9 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require jquery.min.js
-//= require app.js
-//= require cable.js
-//= require bootstrap.min.js
-//= require plugins.js
-//= require jquery.multi-select.js
-//= require custom.js
-//= require jquery.quicksearch.js
-
-
-
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
+//= require popper
+//= require vendor
+//= require bootstrap

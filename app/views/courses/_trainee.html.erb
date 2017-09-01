@@ -1,6 +1,6 @@
 <% @trainee.each do |user| %>
 <tr>
-    <td>Projects</td>
+    <td><%= f.check_box :id, {}, "thisvalue", user.id  %></td>
     <td><%= user.name%></td></td>
 </tr>
 <% end %>

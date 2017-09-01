@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828082021) do
+ActiveRecord::Schema.define(version: 20170824090628) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170828082021) do
   end
 
   create_table "courses_subjects", force: :cascade do |t|
-    t.integer "courses_id"
+    t.integer "course_id"
     t.integer "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,20 +53,12 @@ ActiveRecord::Schema.define(version: 20170828082021) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_courses", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "course_id"
-    t.boolean "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
     t.string "remember_digest"
-    t.integer "role"
+    t.boolean "admin"
     t.string "activation_digest"
     t.boolean "activated"
     t.datetime "activated_at"
@@ -74,7 +66,16 @@ ActiveRecord::Schema.define(version: 20170828082021) do
     t.datetime "reset_send_at"
     t.string "schools"
     t.date "graduation"
+    t.integer "role"
     t.string "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users_courses", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "user_id"
+    t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

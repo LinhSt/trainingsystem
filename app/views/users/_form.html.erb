@@ -27,7 +27,7 @@
 <div class="form-group">
   <label class="col-md-3 control-label" for="example-select">Roles</label>
   <div class="col-md-5">
-    <%= f.select(:role, User.roles.collect {|k, v| [k, k]}, {}, { class: "form-control" }) %>
+    <%= f.select( :role, User.roles.collect {|k, v|[k, k]}, {}, {class: "form-control"}) %>
   </div>
 </div>
 <div class="form-group">

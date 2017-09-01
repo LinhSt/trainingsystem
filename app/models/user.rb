@@ -4,13 +4,16 @@ class User < ApplicationRecord
   before_create :create_activation_digest
   mount_uploader :avatar, PictureUploader
   enum role: [:admin, :trainer, :trainee]
-  scope :trainee,->{where role: "trainee"}
-  scope :trainer,->{where role: "trainer"}
-  has_many :user_courses
+
+  scope :trainee, ->{where role: "trainee"}
+  scope :trainer, ->{where role: "trainer"}
+
+  scope :course_trainer, ->{where id: users_courses.map(&:user_id)}
+  has_many :users_courses
   has_many :user_tasks
   has_many :reports
   has_many :user_subjects
-  has_many :courses, through: :user_courses
+  has_many :courses, through: :users_courses
   has_many :tasks, through: :users_tasks
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i

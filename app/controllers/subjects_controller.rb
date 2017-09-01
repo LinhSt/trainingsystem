@@ -6,7 +6,9 @@ class SubjectsController < ApplicationController
     @subjects = Subject.all
   end
 
-  def show; end
+  def show
+    @tasks = Task.select_tasks(params[:id])
+  end
 
   def new
     @subject = Subject.new

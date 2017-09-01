@@ -22,7 +22,7 @@ User.create!(
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
   User.create!(
-    name: name, email: email, password: password, avatar: "logo.png", role: 2,
+    name: name, email: email, password: password, role: 2,
     password_confirmation: password, activated: true, activated_at: Time.zone.now
   )
 end

@@ -1,4 +1,4 @@
-<%= form_for(@course, html: { class: "form-horizontal form-bordered form-control-borderless" }) do |f| %>
+<%= form_for(@course, html: {class: "form-horizontal form-bordered form-control-borderless"}) do |f| %>
 <div class="form-group">
   <%= f.label :name, t("subject.form.name"), class: "col-md-3 control-label" %>
   <div class="col-md-6">
@@ -13,32 +13,62 @@
 </div>
 <div class="form-group">
   <%= f.label :start_time, t("courses.new.start_time"), class: "col-md-3 control-label" %>
-  <div class="col-md-3">
+  <div class="col-md-3" data-date-format="dd-mm-yyyy">
     <%= f.text_field :start_time, class: "form-control", placeholder: "Start time" %>
   </div>
-  <%= f.label :end_time, t("courses.new.end_time"), class: "col-md-1 control-label abc" %>
+  <%= f.label :end_time, t("courses.new.end_time"), class: "col-md-1 control-label" %>
   <div class="col-md-3">
-    <%= f.text_field :end_time, class: "form-control" , placeholder: "End time" %>
+    <%= f.text_field :end_time, class: "form-control", placeholder: "End time" %>
   </div>
 </div>
-
+<div class="row">
+  <div class="widget-extra text-center">
+    <h3 class="widget-content-light"><i class="gi gi-user"></i><strong>    Subjects</strong></h3>
+  </div>
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <!-- Widget -->
+    <div class="widget">
+      <div class="widget-simple" style="max-height: 400px; overflow-y: scroll;">
+        <div class="table-responsive">
+          <table class="table table-borderless table-pricing">
+            <tbody>
+              <%= f.fields_for :courses_subjects do |p| %>
+              <tr>
+                <td>
+                  <%= p.check_box :_destroy, {:checked => p.object.persisted?}, '0', '1' %>
+                </td>
+                <td>
+                  <%= p.hidden_field :subject_id %>
+                  <%= p.object.subject.name %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- END Widget -->
+  </div>
+</div>
 <div class="form-group form-actions">
-  <div class="col-md-9 col-md-offset-3">
+  <div class="col-md-12 text-center">
     <%= f.submit yield(:button_text), class: "btn btn-sm btn-primary" %>
   </div>
 </div>
 <% end %>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('#course_start_time').datepicker({
-      format: 'dd/mm/yyyy',
+  $( function() {
+    $( "#course_start_time" ).datepicker({
+      format: "dd/mm/yyyy"
       });
-  });
-   $(document).ready(function(){
+  } );
+  $(document).ready(function(){
     $('#course_end_time').datepicker({
-      format: 'dd/mm/yyyy',
+      format: "dd/mm/yyyy"
       });
   });
 </script>
-
+<script>$(function(){ FormsWizard.init(); });</script>

@@ -11,7 +11,11 @@ class PictureUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
- 
+  #set default image
+
+  def default_url(*args)
+    ActionController::Base.helpers.asset_path("fallback/" + [version_name, "logo.png"].compact.join('_'))
+  end
   # Add a white list of extensions which are allowed to be uploaded.
   def extension_white_list
     %w(jpg jpeg gif png)
