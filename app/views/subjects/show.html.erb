@@ -31,7 +31,7 @@
               <%= f.text_field :name,class: "form-control",id: "add-task", placeholder: "Add New Task..." %>
               <%= f.hidden_field :subject_id, :value => params[:id] %>
               <div class="input-group-btn">
-              <%= f.submit htmk: '<i class="fa fa-plus"></i>', class: "btn btn-primary",id:"add-task-btn"%>
+              <%= f.submit html: '<i class="fa fa-plus"></i>', class: "btn btn-primary",id:"add-task-btn"%>
               </div>
             </div>
           <% end %>
@@ -51,6 +51,5 @@
       </div>
     </div>
   </div>
-  <div id="tasks">Task List</div>
 </div>
 <script>$(function(){ ReadyTasks.init(); });</script>

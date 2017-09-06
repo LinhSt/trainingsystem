@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :user_tasks
   has_many :reports
   has_many :user_subjects
+  has_many :subjects, through: :user_subjects
   has_many :courses, through: :users_courses
   has_many :tasks, through: :users_tasks
   validates :name, presence: true, length: {maximum: 50}

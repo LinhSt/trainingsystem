@@ -17,3 +17,4 @@
 //= require popper
 //= require vendor
 //= require bootstrap
+//= require turbolinks
